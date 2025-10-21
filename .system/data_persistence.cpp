@@ -149,6 +149,9 @@ void exam::load_settings(void)
 // ==> Save setting_dse bool into .settings file
 void exam::save_settings(void)
 {
+    // Create directory if it doesn't exist
+    system("mkdir -p .system/exam_token");
+    
     std::ofstream file(".system/exam_token/.settings");
     if (file.is_open())
     {
