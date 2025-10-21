@@ -1,0 +1,41 @@
+# ==========================================
+# 42 Exam Training - .gitignore
+# ==========================================
+
+# Exam tokens and personal data
+.system/exam_token/
+.system/unique_id.txt
+.system/vip_list
+.system/acceptCGV
+
+# Compiled binaries
+.system/a.out
+a.out
+*.out
+*.o
+*.dSYM/
+
+# Temporary files
+.system/.devmake.err
+.system/grading/traceback
+.dev
+traceback
+
+# User solutions and progress
+rendu/
+success/
+traces/
+
+# Environment variables
+.system/.env
+
+# OS specific files
+.DS_Store
+*~
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Logs
+*.log
