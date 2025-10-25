@@ -188,7 +188,10 @@ bool exam::start_new_ex(void)
     if (!backup)
     {
         list_ex_lvl = list_dir();
-        exercise ex = *randomize_exercise(list_ex_lvl, setting_dse);
+        // If setting_all_ex is enabled, we should never give already completed exercises
+        // regardless of setting_dse value (it wouldn't make sense)
+        bool remove_completed = (setting_dse == 0) || (setting_all_ex == 1);
+        exercise ex = *randomize_exercise(list_ex_lvl, remove_completed ? 0 : 1);
         current_ex = new exercise(ex);
         prepare_current_ex();
         store_data();

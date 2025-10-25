@@ -69,29 +69,36 @@ bool exam::prepare_current_ex(void)
 // ==> Randomize exercise (give 1 into list)
 exercise *randomize_exercise(std::map<int, exercise> list, bool remove_success)
 {
-    // if setting_dse is 1, remove all exercise in list having a name in .system/exam_token/success_ex 
+    // if setting_dse is 0 (OFF), remove all exercise in list having a name in success/success_ex 
+    // if setting_dse is 1 (ON), keep all exercises including already done ones
     if (remove_success == 0)
     {
         std::ifstream success_ex("success/success_ex");
         std::string line;
         std::string name;
-        int assignement;
-        int level_ex;
-        int time_bef_grade;
-        while (std::getline(success_ex, line))
+        if (success_ex.is_open())
         {
-            std::istringstream iss(line);
-            iss >> name;
-            for (std::map<int, exercise>::iterator it = list.begin(); it != list.end(); it++)
+            while (std::getline(success_ex, line))
             {
-                if (it->second.get_name() == name)
+                // Skip empty lines
+                if (line.empty())
+                    continue;
+                    
+                std::istringstream iss(line);
+                iss >> name;
+                
+                // Remove this exercise from the list
+                for (std::map<int, exercise>::iterator it = list.begin(); it != list.end(); it++)
                 {
-                    list.erase(it);
-                    break;
+                    if (it->second.get_name() == name)
+                    {
+                        list.erase(it);
+                        break;
+                    }
                 }
             }
+            success_ex.close();
         }
-        success_ex.close();
     }
 
 
