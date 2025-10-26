@@ -134,6 +134,7 @@ void exam::load_settings(void)
         file >> setting_dcc;
         file >> setting_an;
         file >> setting_all_ex;
+        file >> setting_reverse_level;
         file.close();
     }
     else
@@ -143,6 +144,7 @@ void exam::load_settings(void)
         setting_dcc = 0;
         setting_an = 0;
         setting_all_ex = 0;
+        setting_reverse_level = 0;
     }
 }
 
@@ -159,6 +161,7 @@ void exam::save_settings(void)
         file << setting_dcc << std::endl;
         file << setting_an << std::endl;
         file << setting_all_ex << std::endl;
+        file << setting_reverse_level << std::endl;
         file.close();
     }
 }

@@ -293,6 +293,12 @@ void exam::settings_menu(void)
         else
             std::cout << RED << BOLD << " OFF" << RESET << std::endl;
 
+        std::cout << LIME << "5." << WHITE << BOLD << " Reverse Level Mode (Start from max level down to level 1)";
+        if (setting_reverse_level)
+            std::cout << LIME << BOLD << " ON" << RESET << std::endl;
+        else
+            std::cout << RED << BOLD << " OFF" << RESET << std::endl;
+
         std::cin >> input;
         if (input == "1")
         {
@@ -311,6 +317,8 @@ void exam::settings_menu(void)
         }
         if (input == "4")
             setting_all_ex = !setting_all_ex;
+        if (input == "5")
+            setting_reverse_level = !setting_reverse_level;
     }
 
     std::cout << REMOVE_LINE << RESET << WHITE << BOLD << "Save settings..." << std::endl;

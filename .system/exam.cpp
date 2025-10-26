@@ -166,6 +166,11 @@ void exam::ask_param(void)
     }
 
     set_max_lvl();
+    
+    // If reverse level mode is enabled, start at max level (folder index is level_max - 1)
+    if (setting_reverse_level)
+        level = level_max - 1;
+    
     level_per_ex = ((double)level + 1) / (double)level_max * 100;
     level_per_ex_save = level_per_ex;
 
@@ -279,7 +284,10 @@ exam::~exam(void) {}
 
 void exam::up_lvl(void)
 {
-    level++;
+    if (setting_reverse_level)
+        level--;
+    else
+        level++;
 }
 
 time_t exam::get_end_time(void)

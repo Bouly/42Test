@@ -75,7 +75,10 @@ void exam::success_ex(bool force)
     if (should_level_up)
     {
         up_lvl();
-        level_per_ex += level_per_ex_save;
+        if (!setting_reverse_level)
+            level_per_ex += level_per_ex_save;
+        else
+            level_per_ex -= level_per_ex_save;
     }
     
     std::cout << "(Press enter to continue...)" << std::endl;
@@ -93,7 +96,14 @@ void exam::success_ex(bool force)
             system("cp -r rendu/* success/ 2> /dev/null");
         }
     }
-    if (level_per_ex > 100)
+    // Check exam completion - normal mode: level_per_ex > 100, reverse mode: level < 0
+    bool exam_completed = false;
+    if (setting_reverse_level)
+        exam_completed = (level < 0);
+    else
+        exam_completed = (level_per_ex > 100);
+    
+    if (exam_completed)
         end_exam();
     start_new_ex();
 }

@@ -109,6 +109,7 @@ private:
     bool setting_dcc;
     bool setting_an;
     bool setting_all_ex;
+    bool setting_reverse_level;
     std::string username;
 
     time_t start_time;
