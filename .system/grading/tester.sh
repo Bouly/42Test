@@ -3,28 +3,20 @@
 #                                                         :::      ::::::::    #
 #    tester.sh                                          :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jcluzet <jcluzet@student.42.fr>            +#+  +:+       +#+         #
+#    By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/07 10:37:23 by pandalaf          #+#    #+#              #
-#    Updated: 2022/12/27 02:09:44 by jcluzet          ###   ########.fr        #
+#    Created: 2022/11/06 23:07:59 by pandalaf          #+#    #+#              #
+#    Updated: 2022/11/07 00:37:40 by pandalaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FILE='sort_list.c'
-ASSIGN='sort_list'
-
-# Copy the file list.h from GradeMe to the student's folder thanks to @Kuninoto Issue
-cp .system/grading/list.h rendu/$ASSIGN/list.h
+FILE='flood_fill.c'
+ASSIGN='flood_fill'
 
 bash .system/auto_correc_main.sh $FILE $ASSIGN
 if [ -e .system/grading/traceback ];then
-    mv .system/grading/traceback .
-    # Remove the file list.h from the student's folder
-    rm -f rendu/$ASSIGN/list.h
+	mv .system/grading/traceback .
 	exit 1
 fi
-
-# Remove the file list.h from the student's folder
-rm -f rendu/$ASSIGN/list.h
 
 touch .system/grading/passed;

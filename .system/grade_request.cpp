@@ -44,14 +44,15 @@ void exam::success_ex(bool force)
         // Count remaining exercises in current level
         std::map<int, exercise> remaining_list = list_ex_lvl;
         
-        // Read success file and remove completed exercises
+        // Read success file and remove only completed exercises from CURRENT level
         std::ifstream success_file("success/success_ex");
         std::string completed_name;
         while (std::getline(success_file, completed_name))
         {
             for (std::map<int, exercise>::iterator it = remaining_list.begin(); it != remaining_list.end(); it++)
             {
-                if (it->second.get_name() == completed_name)
+                // Only remove if the exercise is from the current level
+                if (it->second.get_name() == completed_name && it->second.get_lvl() == level)
                 {
                     remaining_list.erase(it);
                     break;
